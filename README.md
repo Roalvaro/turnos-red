@@ -3,10 +3,10 @@ API RESTful para gestión de turnos y médicos.
 
 Descripción del proyecto:
 
-Proyecto académico de una "API RESTful" para la gestión de "Turnos Médicos", desarrollada con Node.js, Express y TypeScript.  
-Incluye validaciones con Zod, autenticación con JWT, documentación con Swagger 
+Proyecto académico de una "API RESTful" para la gestión de "Turnos Médicos", desarrollada con Node.js, Express y TypeScript.
+Incluye validaciones con Zod, autenticación con JWT y documentación con Swagger.
 
-Tecnologías utilizadas
+Tecnologías utilizadas:
 - Node.js + Express
 - TypeScript
 - Zod (validaciones)
@@ -14,7 +14,8 @@ Tecnologías utilizadas
 - Swagger (documentación)
 - Jest + Supertest (tests automáticos)
 
-Instalación
+Instalación:
 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/Roalvaro/turnos-red
+   ```
