@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const productos_controller_1 = require("../controllers/productos.controller");
+const auth_controller_1 = require("../controllers/auth.controller");
 const router = (0, express_1.Router)();
-router.get("/", productos_controller_1.getProductos);
+router.post("/login", auth_controller_1.login);
 exports.default = router;
-//# sourceMappingURL=productos.routes.js.map
+//# sourceMappingURL=auth.routes.js.map

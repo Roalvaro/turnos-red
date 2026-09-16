@@ -1,72 +1,50 @@
-const turnos = [];
-const isTurnoInput = (body) => {
-    if (typeof body !== "object" || body === null)
-        return false;
-    const turno = body;
-    return ["fecha", "hora", "cliente", "servicio", "estado"].every((field) => {
-        const value = turno[field];
-        return typeof value === "string" && value.trim().length > 0;
-    });
-};
-const findTurno = (id) => turnos.find((turno) => turno.id === id);
-const getId = (req, res) => {
-    const id = req.params.id;
-    if (typeof id !== "string" || id.length === 0) {
-        res.status(400).json({ error: "El identificador del turno no es válido" });
-        return null;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteTurno = exports.updateTurno = exports.getTurnoById = exports.getTurnos = exports.createTurno = void 0;
+const dataTurnos_1 = require("../dataTurnos");
+const turno_schema_1 = require("../schemas/turno.schema");
+const createTurno = (req, res) => {
+    try {
+        const nuevoTurno = turno_schema_1.turnoSchema.parse(req.body);
+        dataTurnos_1.arrayTurnos.push(nuevoTurno);
+        res.status(201).json(nuevoTurno);
     }
-    return id;
+    catch (error) {
+        res.status(400).json({
+            message: "Error de validación",
+            details: error.errors,
+        });
+    }
 };
-export const getTurnos = (_req, res) => {
-    res.status(200).json(turnos);
+exports.createTurno = createTurno;
+const getTurnos = (_req, res) => {
+    res.status(200).json(dataTurnos_1.arrayTurnos);
 };
-export const getTurno = (req, res) => {
-    const id = getId(req, res);
-    if (!id)
-        return;
-    const turno = findTurno(id);
+exports.getTurnos = getTurnos;
+const getTurnoById = (req, res) => {
+    const turno = dataTurnos_1.arrayTurnos.find((t) => t.id === req.params.id);
     if (!turno) {
-        res.status(404).json({ error: "Turno no encontrado" });
-        return;
+        return res.status(404).json({ message: "Turno no encontrado" });
     }
     res.status(200).json(turno);
 };
-export const createTurno = (req, res) => {
-    if (!isTurnoInput(req.body)) {
-        res.status(400).json({ error: "El turno requiere fecha, hora, cliente, servicio y estado" });
-        return;
+exports.getTurnoById = getTurnoById;
+const updateTurno = (req, res) => {
+    const turno = dataTurnos_1.arrayTurnos.find((t) => t.id === req.params.id);
+    if (!turno) {
+        return res.status(404).json({ message: "Turno no encontrado" });
     }
-    const turno = { id: crypto.randomUUID(), ...req.body };
-    turnos.push(turno);
-    res.status(201).json(turno);
-};
-export const updateTurno = (req, res) => {
-    const id = getId(req, res);
-    if (!id)
-        return;
-    const index = turnos.findIndex((turno) => turno.id === id);
-    if (index === -1) {
-        res.status(404).json({ error: "Turno no encontrado" });
-        return;
-    }
-    if (!isTurnoInput(req.body)) {
-        res.status(400).json({ error: "El turno requiere fecha, hora, cliente, servicio y estado" });
-        return;
-    }
-    const turno = { id, ...req.body };
-    turnos[index] = turno;
+    Object.assign(turno, req.body);
     res.status(200).json(turno);
 };
-export const deleteTurno = (req, res) => {
-    const id = getId(req, res);
-    if (!id)
-        return;
-    const index = turnos.findIndex((turno) => turno.id === id);
+exports.updateTurno = updateTurno;
+const deleteTurno = (req, res) => {
+    const index = dataTurnos_1.arrayTurnos.findIndex((t) => t.id === req.params.id);
     if (index === -1) {
-        res.status(404).json({ error: "Turno no encontrado" });
-        return;
+        return res.status(404).json({ message: "Turno no encontrado" });
     }
-    turnos.splice(index, 1);
+    dataTurnos_1.arrayTurnos.splice(index, 1);
     res.status(204).send();
 };
+exports.deleteTurno = deleteTurno;
 //# sourceMappingURL=turnos.controller.js.map

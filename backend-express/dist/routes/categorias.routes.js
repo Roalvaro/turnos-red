@@ -1,6 +1,8 @@
-import { Router } from "express";
-import { getCategorias } from "../controllers/categorias.controller.js";
-const router = Router();
-router.get("/", getCategorias);
-export default router;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const categorias_controller_1 = require("../controllers/categorias.controller");
+const router = (0, express_1.Router)();
+router.get("/", categorias_controller_1.getCategorias);
+exports.default = router;
 //# sourceMappingURL=categorias.routes.js.map
