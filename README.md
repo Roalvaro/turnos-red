@@ -1,4 +1,4 @@
-# Turnos Red
+<img width="1919" height="1030" alt="image" src="https://github.com/user-attachments/assets/52a3d90d-ac58-49a2-8e5f-f74967e05991" /># Turnos Red
 
 API RESTful para la gestión de turnos, médicos, profesionales y especialidades.
 
@@ -110,3 +110,11 @@ La API responde con códigos HTTP estándar como:
 ## Autor
 
 Rodrigo Maldonado
+
+## Uso de Inteligencia Artificial 
+Durante el desarrollo del proyecto se utilizó inteligencia artificial como apoyo para: 
+- Resolución de dudas sobre Express y TypeScript.
+- Organización de la estructura de carpetas.
+- Generación de ejemplos de controladores.
+- Elaboración de documentación técnica.
+- Revisión del archivo README.
